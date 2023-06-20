@@ -1,0 +1,41 @@
+name: Flujo
+on:
+  pull_request:
+    branches: [ master ]
+jobs:
+  ci_to_master:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        run: pytest
+      - name: Build project
+        run: python build.py
+      - name: Validate data
+        run: |
+          # Agregar comandos o scripts para validar los datos relacionados con la diabetes
+          pip install pydantic
+          python validate_data.py
+      - name: Data analysis
+        run: |
+          # Agregar comandos o scripts para realizar análisis de datos relacionados con la diabetes
+          pip install pandas
+          python analyze_data.py
+      - name: Generate reports
+        run: |
+          # Agregar comandos o scripts para generar informes automatizados sobre la diabetes
+          pip install reportlab
+          python generate_reports.py
+      - name: Device integration
+        run: |
+          # Agregar comandos o scripts para la integración con dispositivos médicos
+          pip install device-sdk
+          python device_integration.py
+      - name: Send notifications
+        run: |
+          # Agregar comandos o scripts para enviar notificaciones y recordatorios
+          pip install sendgrid
+          python send_notifications.py
